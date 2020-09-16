@@ -141,10 +141,12 @@
   <ItemGroup>
     <ClCompile Include="Choferes.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="validaciones.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Choferes.h" />
     <ClInclude Include="tipos.h" />
+    <ClInclude Include="validaciones.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -5,9 +5,8 @@
 
 using namespace std;
 #include "Choferes.h"
-
+#include "validaciones.h"
 const char archivoChoferes [] = ("choferes.dat");
-
 
 void menuChoferes() {
     int opc;
@@ -41,22 +40,30 @@ void menuChoferes() {
             break;
         case 0:
             break;
-
         }
     } while (opc != 0);
 }
  /*********************************************************************/
 choferes cargarChofer() {
     char aux;
+    char cad[50];
     choferes chof;
-    
-
-    cout<<"CARGAR DNI: ";
-    cin >> chof.dni;   ///hasta 8 espacio y no vacios 
-    cout<<"CARGAR APELLIDO: ";
-    cin >> chof.apellido; //50 limite no vacia
+    do
+    {
+        cout << "CARGAR DNI: ";
+        cin >> chof.dni;   ///hasta 8 espacio y no vacios 
+    } while (espaciosVac(chof.dni,1) == false);
+    do{
+        cout << "CARGAR APELLIDO: ";
+        cin.ignore();
+        cargarCadena(chof.apellido,50); //50 limite no vacia
+    } while (espaciosVac(chof.apellido, 2) == false);
+    //cin.ignore();
+    do{
     cout<<"CARGAR NOMBRE: ";
-    cin >> chof.nombre; // 50 limite no vacia
+    cargarCadena(chof.nombre,50); // 50 limite no vacia
+    } while (espaciosVac(chof.nombre, 3) == false);
+
     cout<<"FECHA DE INGRESO: "; // menor o igual a fecha actual
     cout << "DIA: ";
     cin >> chof.fechaIng.dia;
@@ -64,10 +71,18 @@ choferes cargarChofer() {
     cin >> chof.fechaIng.mes;
     cout << "A" << (char)165 << "O: ";
     cin >> chof.fechaIng.año;
-    cout<<"INGRESAR EL CUIT: ";
-    cin >> chof.cuit; //cuit hasta 20 valor unico y que no sea vacio
-    cout<<"TIPO DE REGISTRO: ";
-    cin >> chof.tipoRegistro; //entre 1 y 3
+
+    do{
+    cout << "INGRESAR EL CUIT: ";
+    cin >> chof.cuit;
+    } while (espaciosVac(chof.cuit,4)==false);
+    //cuit hasta 20 valor unico y que no sea vacio
+    do
+    {
+        cout << "TIPO DE REGISTRO (1)(2)(3): ";
+        cin >> chof.tipoRegistro; //entre 1 y 3
+    } while (chof.tipoRegistro <1 || chof.tipoRegistro > 3);
+
     cout<<"FECHA DE VENCIMIENTO: "; // mayor a fecha del sistema
     cout << "DIA: ";
     cin >> chof.fechaVen.dia;
@@ -75,12 +90,16 @@ choferes cargarChofer() {
     cin >> chof.fechaVen.mes;
     cout << "A" << (char)165 << "O: ";
     cin >> chof.fechaVen.año;
+    
+    do{
     cout << "TELEFONO: ";
     cin >> chof.telefono; // sea de 15
+    } while (espaciosVac(chof.telefono, 5) == false);
+    
     cout << "PROPIETARIO DEL AUTO (S/N):";
-    cin >> aux; /// PONER EL AUX 
+    cin >> aux;
 
-    if (aux == 'S') {
+    if (aux == 'S' || aux == 's') {
         chof.propietario = true;
     }
     else
@@ -90,7 +109,7 @@ choferes cargarChofer() {
     chof.estado = true;
 
     system("cls");
-
+    
     return chof;
 }
 /****************************************************************************/
@@ -120,14 +139,15 @@ void altaChofer() {
     choferes reg;
 
     reg=cargarChofer();
-    pos = buscarDni(reg.dni);
-    if (pos != -1) {
-        cout << "EL DNI YA EXISTE" << endl<<endl;
-        system("pause");
-        return;
+    if (reg.estado == true) {
+        pos = buscarDni(reg.dni);
+        if (pos != -1) {
+            cout << "EL DNI YA EXISTE" << endl << endl;
+            system("pause");
+            return;
+        }
+        guardarChofer(reg);
     }
-    guardarChofer(reg);
-
 }
 /**********************************************************************/
 int buscarDni(char* chof) {
@@ -146,9 +166,26 @@ int buscarDni(char* chof) {
     fclose(p);
     return -1;
 }
+/**************************************************************************/
+int buscarCuit(char* chof) {
+    FILE* p;
+    choferes reg;
+    int pos = 0;
+    p = fopen(archivoChoferes, "rb");
+    if (p == NULL) return -1;
+    while (fread(&reg, sizeof(choferes), 1, p) == 1) {
+        if (strcmp(reg.cuit, chof) == 0) {
+            fclose(p);
+            return pos;
+        }
+        pos++;
+    }
+    fclose(p);
+    return -1;
+}
 /***********************************************************/
 void listarChoferes() {
-
+    
     FILE* p;
     p = fopen(archivoChoferes, "rb");
     if (p == NULL) {
@@ -165,15 +202,10 @@ void listarChoferes() {
         aux = leerRegistro(i);
         mostrarChoferes(aux);
     }
-    /*choferes chof;
-        while (fread(&chof,sizeof(chof),1,p)==1)
-        {
-            mostrarChoferes(chof);
-
-        }*/
         system("pause");
     fclose(p);
 }
+
 /*******************************************************************/
 void mostrarChoferes(choferes chof) {
 
@@ -210,7 +242,10 @@ int cantRegistro() {
     }
     int cant;
     choferes aux;
-    fseek(p,0,SEEK_END);
+    fseek(p,0,2);
+    //0 INICIO SEEK_SET
+    //1 MITAD SEEL_CUT
+    //2 FIN SEEK_END
     cant = ftell(p);
     fclose(p);
     
@@ -218,20 +253,13 @@ int cantRegistro() {
 }
 /****************************************************************************/
 void modificarchofer() {
-    /*system("cls");
-    FILE* p;
-    p = fopen(archivoChoferes, "rb+");
-    if (p == NULL) {
-        cout << "NO SE PUDO ABRIR CORRECTAMENTE EL ARCHIVO" << endl;
-        return;
-    }*/
     choferes aux;
 
     char dni[10];
 
     cout << "INGRESE EL DNI A MODIFICAR: ";
-    cin >> dni;//validar
-    int cant = cantRegistro();
+    cin >> dni;
+    //int cant = cantRegistro();
     int dia, mes, año;
     int pos;
     pos = buscarDni(dni);
@@ -239,7 +267,7 @@ void modificarchofer() {
         //mostrar
         choferes chof;
         chof = leerRegistro(pos);
-        //fseek(p, pos * sizeof(chof), 0);
+
         cout << "INGRESE NUEVA FECHA DE VENCIMIENTO: ";
         cin >> dia >> mes >> año;
         chof.fechaVen.dia = dia;
@@ -252,7 +280,6 @@ void modificarchofer() {
             return;
         }
     }
-    //fclose(p);
     cout << "NO SE ENCONTRO EL REGISTRO" << endl;
     system("pause");
     system("cls");
@@ -300,6 +327,7 @@ choferes leerRegistro(int pos) {
     fseek(p, pos*sizeof(aux), SEEK_SET);
     fread(&aux, sizeof(aux), 1, p);
     fclose(p);
+    
     return aux;
 }
 /*********************************************************/

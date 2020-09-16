@@ -6,6 +6,7 @@ bool guardarChofer(choferes chof);
 choferes cargarChofer();
 choferes leerRegistro(int pos);
 int buscarDni(char *chof);
+int buscarCuit(char* chof);
 void listarChoferes();
 void mostrarChoferes (choferes chof);
 int cantRegistro();
