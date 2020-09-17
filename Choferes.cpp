@@ -51,7 +51,7 @@ choferes cargarChofer() {
     do
     {
         cout << "CARGAR DNI: ";
-        cin >> chof.dni;   ///hasta 8 espacio y no vacios 
+        cargarCadena(chof.dni,11);   ///hasta 8 espacio y no vacios 
     } while (espaciosVac(chof.dni,1) == false);
     do{
         cout << "CARGAR APELLIDO: ";
@@ -74,7 +74,7 @@ choferes cargarChofer() {
 
     do{
     cout << "INGRESAR EL CUIT: ";
-    cin >> chof.cuit;
+    cargarCadena(chof.cuit,51);
     } while (espaciosVac(chof.cuit,4)==false);
     //cuit hasta 20 valor unico y que no sea vacio
     do
@@ -93,7 +93,7 @@ choferes cargarChofer() {
     
     do{
     cout << "TELEFONO: ";
-    cin >> chof.telefono; // sea de 15
+    cargarCadena(chof.telefono, 16); // sea de 15
     } while (espaciosVac(chof.telefono, 5) == false);
     
     cout << "PROPIETARIO DEL AUTO (S/N):";

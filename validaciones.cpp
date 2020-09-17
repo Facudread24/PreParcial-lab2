@@ -16,8 +16,8 @@ bool espaciosVac(char *aux,int num) {
 			for (int i = 0; i < x; i++)
 			{
 				//n=strchr(aux, (char)32);
-				if (aux[i] == '\0') {
-					cout << "NO INGRESAR ESPACIOS VACIOS"<<endl;
+				if (isdigit(aux[i]==false)) {
+					cout << "NO INGRESAR ESPACIOS VACIOS NI LETRAS"<<endl;
 					system("pause");
 					system("cls");
 					return false;
@@ -33,18 +33,20 @@ bool espaciosVac(char *aux,int num) {
 	case 2:
 		x = strlen(aux);
 		if (x <= 50) {
-			for (int i = 0; i < x; i++)
+			/*for (int i = 0; i < x; i++)
 			{
 				//n=strchr(aux, (char)32);
-				if (aux[i] == '\0') {
+				if ((aux[i] == false)) {
 					cout << "NO INGRESAR ESPACIOS VACIOS" << endl;
 					system("pause");
 					system("cls");
 					return false;
 				}
 				return true;
-			}
+			}*/
+			return true;
 		}
+
 		cout << "DEBE INGRESAR HASTA 50 CARACTERES " << endl;
 		system("pause");
 		system("cls");
@@ -53,17 +55,18 @@ bool espaciosVac(char *aux,int num) {
 	case 3:
 		x = strlen(aux);
 		if (x <= 50) {
-			for (int i = 0; i < x; i++)
+			/*for (int i = 0; i < x; i++)
 			{
 				//n=strchr(aux, (char)32);
-				if (aux[i] == '\0') {
+				if (isdigit(aux[i] == false)) {
 					cout << "NO INGRESAR ESPACIOS VACIOS" << endl;
 					system("pause");
 					system("cls");
 					return false;
 				}
 				return true;
-			}
+			}*/
+			return true;
 		}
 
 		cout << "DEBE INGRESAR HASTA 50 CARACTERES " << endl;
@@ -78,8 +81,8 @@ bool espaciosVac(char *aux,int num) {
 			for (int i = 0; i < x; i++)
 			{
 				//n=strchr(aux, (char)32);
-				if (aux[i] == '\0') {
-					cout << "NO INGRESAR ESPACIOS VACIOS" << endl;
+				if (isdigit(aux[i] == false)) {
+					cout << "NO INGRESAR ESPACIOS VACIOS NI LETRAS" << endl;
 					system("pause");
 					system("cls");
 					return false;
@@ -93,13 +96,14 @@ bool espaciosVac(char *aux,int num) {
 		system("cls");
 		return false;
 	case 5:
+		
 		x = strlen(aux);
 		if (x == 15) {
 			for (int i = 0; i < x; i++)
 			{
 				//n=strchr(aux, (char)32);
-				if (aux[i] == '\0') {
-					cout << "NO INGRESAR ESPACIOS VACIOS" << endl;
+				if (isdigit(aux[i] == false)) {
+					cout << "NO INGRESAR ESPACIOS VACIOS NI LETRAS" << endl;
 					system("pause");
 					system("cls");
 					return false;
@@ -107,15 +111,15 @@ bool espaciosVac(char *aux,int num) {
 				return true;
 			}
 		}
-
-		cout << "DEBE INGRESAR 15 CARACTERES " << endl;
+		
+		cout << "DEBE INGRESAR 11 CARACTERES " << endl;
 		system("pause");
 		system("cls");
 		return false;
 	}
 	
 }
-void fechaActual() {
+bool fechaActual(choferes chof) {
 	time_t tiempo;
 	char cad[80];
 	struct tm* tmPtr;
@@ -123,9 +127,23 @@ void fechaActual() {
 	tiempo = time(NULL);
 	tmPtr = localtime(&tiempo);
 
-	printf("FECHA ACTUAL \n%d/%d/%d %d:%d:%d", tmPtr->tm_mday, tmPtr->tm_mon + 1, 1900 + tmPtr->tm_year, tmPtr->tm_hour, tmPtr->tm_min, tmPtr->tm_sec);
-	strftime(cad, 80, "%A %d de %B de %Y", tmPtr);
-	printf("\n\n%s", cad);
+	fecha a;
+
+	a.dia = tmPtr->tm_mday;
+	a.mes = tmPtr->tm_mon + 1;
+	a.año = 1900 + tmPtr->tm_year;
+	
+	if (chof.fechaIng.dia <= a.dia && chof.fechaIng.mes <= a.mes && chof.fechaIng.año <= a.año) {
+		return true;
+	}
+	if (chof.fechaVen.dia >= a.dia && chof.fechaVen.mes >= a.mes && chof.fechaVen.año > a.año) {
+		return true;
+	}
+	return false;
+
+	/*tmPtr->tm_hour, tmPtr->tm_min, tmPtr->tm_sec*/;
+	//strftime(cad, 80, "%A %d de %B de %Y", tmPtr);
+	//printf("\n\n%s", cad);
 }
 void cargarCadena(char* pal, int tam) {
 	int i;
