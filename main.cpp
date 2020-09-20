@@ -7,6 +7,8 @@
 using namespace std;
 #include "Choferes.h"
 #include "viajes.h"
+#include "reportes.h"
+#include "configuracion.h"
 #include "validaciones.h"
 
 int main() {
@@ -34,15 +36,14 @@ int main() {
             break;
         case 2: menuViaje();
             break;
-        case 3: //reportes();
+        case 3: menuReportes();
             break;
-        case 4: //configuracion();
+        case 4: configuracion();
             break;
         case 0:
             break;
 
         }
     } while (opc != 0);
-
-        return 0;
+return 0;
 }

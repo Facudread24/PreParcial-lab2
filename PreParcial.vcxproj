@@ -140,12 +140,16 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Choferes.cpp" />
+    <ClCompile Include="configuracion.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="reportes.cpp" />
     <ClCompile Include="validaciones.cpp" />
     <ClCompile Include="viajes.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Choferes.h" />
+    <ClInclude Include="configuracion.h" />
+    <ClInclude Include="reportes.h" />
     <ClInclude Include="tipos.h" />
     <ClInclude Include="validaciones.h" />
     <ClInclude Include="viajes.h" />
