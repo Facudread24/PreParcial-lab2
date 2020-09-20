@@ -20,3 +20,17 @@ struct choferes
     bool estado;
 
 };
+
+struct viajes
+{
+    int id;
+    char dni[10];
+    int idCliente;
+    fecha viaje;
+    int hora;
+    float km;
+    float importe;
+    char patente[10];
+    int calificacion;
+    bool viajeEstado;
+};

@@ -1,5 +1,5 @@
 #pragma once
-#include "Choferes.h"
+#include "Choferes.h";
 bool espaciosVac(char *aux,int tam);
-bool fechaActual(choferes chof);
+int fechaActual(fecha chof);
 void cargarCadena(char* pal, int tam);

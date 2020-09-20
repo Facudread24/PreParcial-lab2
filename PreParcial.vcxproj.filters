@@ -24,6 +24,9 @@
     <ClCompile Include="validaciones.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
+    <ClCompile Include="viajes.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Choferes.h">
@@ -33,6 +36,9 @@
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
     <ClInclude Include="validaciones.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="viajes.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
   </ItemGroup>

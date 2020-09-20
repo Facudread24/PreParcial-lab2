@@ -25,7 +25,6 @@ bool espaciosVac(char *aux,int num) {
 				return true;
 			}
 		}
-
 		cout << "DEBE INGRESAR 8 CARACTERES "<< endl;
 		system("pause");
 		system("cls");
@@ -98,7 +97,7 @@ bool espaciosVac(char *aux,int num) {
 	case 5:
 		
 		x = strlen(aux);
-		if (x == 15) {
+		if (x == 11) {
 			for (int i = 0; i < x; i++)
 			{
 				//n=strchr(aux, (char)32);
@@ -119,7 +118,7 @@ bool espaciosVac(char *aux,int num) {
 	}
 	
 }
-bool fechaActual(choferes chof) {
+/*int fechaActual(choferes chof) {
 	time_t tiempo;
 	char cad[80];
 	struct tm* tmPtr;
@@ -132,19 +131,24 @@ bool fechaActual(choferes chof) {
 	a.dia = tmPtr->tm_mday;
 	a.mes = tmPtr->tm_mon + 1;
 	a.año = 1900 + tmPtr->tm_year;
+	choferes aux;
 	
-	if (chof.fechaIng.dia <= a.dia && chof.fechaIng.mes <= a.mes && chof.fechaIng.año <= a.año) {
+	aux.fechaIng = a;
+
+	
+
+	/*if (chof.fechaIng.dia <= a.dia && chof.fechaIng.mes <= a.mes && chof.fechaIng.año <= a.año) {
 		return true;
 	}
 	if (chof.fechaVen.dia >= a.dia && chof.fechaVen.mes >= a.mes && chof.fechaVen.año > a.año) {
 		return true;
 	}
 	return false;
-
+	*/
 	/*tmPtr->tm_hour, tmPtr->tm_min, tmPtr->tm_sec*/;
 	//strftime(cad, 80, "%A %d de %B de %Y", tmPtr);
 	//printf("\n\n%s", cad);
-}
+
 void cargarCadena(char* pal, int tam) {
 	int i;
 	fflush(stdin);

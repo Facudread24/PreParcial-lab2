@@ -6,6 +6,7 @@
 
 using namespace std;
 #include "Choferes.h"
+#include "viajes.h"
 #include "validaciones.h"
 
 int main() {
@@ -31,7 +32,7 @@ int main() {
             system("cls");
         case 1: menuChoferes();
             break;
-        case 2: //menuVIAJES();
+        case 2: menuViaje();
             break;
         case 3: //reportes();
             break;

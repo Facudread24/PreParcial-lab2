@@ -45,17 +45,24 @@ void menuChoferes() {
 }
  /*********************************************************************/
 choferes cargarChofer() {
+    int a;
     char aux;
     char cad[50];
     choferes chof;
     do
     {
+        cin.ignore();
         cout << "CARGAR DNI: ";
         cargarCadena(chof.dni,11);   ///hasta 8 espacio y no vacios 
-    } while (espaciosVac(chof.dni,1) == false);
+        a = buscarDni(chof.dni);
+        if (a!=-1)
+        {
+            cout<<"EL DNI YA EXISTE";
+            system("cls");
+        }
+    } while (espaciosVac(chof.dni,1) == false ||a!=-1);
     do{
         cout << "CARGAR APELLIDO: ";
-        cin.ignore();
         cargarCadena(chof.apellido,50); //50 limite no vacia
     } while (espaciosVac(chof.apellido, 2) == false);
     //cin.ignore();
@@ -74,8 +81,15 @@ choferes cargarChofer() {
 
     do{
     cout << "INGRESAR EL CUIT: ";
+    cin.ignore();
     cargarCadena(chof.cuit,51);
-    } while (espaciosVac(chof.cuit,4)==false);
+    a = buscarCuit(chof.cuit);
+    if (a != -1)
+    {
+        cout << "EL CUIT YA EXISTE";
+        system("cls");
+    }
+    } while (espaciosVac(chof.cuit,4)==false || a!=-1);
     //cuit hasta 20 valor unico y que no sea vacio
     do
     {
@@ -93,6 +107,7 @@ choferes cargarChofer() {
     
     do{
     cout << "TELEFONO: ";
+    cin.ignore();
     cargarCadena(chof.telefono, 16); // sea de 15
     } while (espaciosVac(chof.telefono, 5) == false);
     
@@ -212,10 +227,10 @@ void mostrarChoferes(choferes chof) {
     if (chof.estado == false) return;
     
         cout << "DNI:" << chof.dni << endl;
-        cout << "CARGAR APELLIDO: "<<chof.apellido << endl;
-        cout << "CARGAR NOMBRE: "<<chof.nombre << endl;
+        cout << "APELLIDO: "<<chof.apellido << endl;
+        cout << "NOMBRE: "<<chof.nombre << endl;
         cout << "FECHA DE INGRESO: "<< chof.fechaIng.dia <<"/"<< chof.fechaIng.mes << "/" << chof.fechaIng.año << endl;
-        cout << "INGRESAR EL CUIT: "<<chof.cuit << endl;
+        cout << "CUIT: "<<chof.cuit << endl;
         cout << "TIPO DE REGISTRO: "<<chof.tipoRegistro << endl;
         cout << "FECHA DE VENCIMIENTO: " << chof.fechaVen.dia << "/" << chof.fechaVen.mes << "/" << chof.fechaVen.año << endl;
         cout << "TELEFONO: "<<chof.telefono << endl;
