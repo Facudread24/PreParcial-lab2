@@ -34,3 +34,8 @@ struct viajes
     int calificacion;
     bool viajeEstado;
 };
+struct reporte1/// solo de practica
+{
+    choferes chof;
+    int cantviajes;
+};

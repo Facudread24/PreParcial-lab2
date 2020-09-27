@@ -63,27 +63,44 @@ viajes cargarViaje() {
     viajes viaj;
     char DNI[10];
     int d;
+    int comp;
     viaj.id= 1 + cantRegistroViaje();
     cout << "ID: "<<viaj.id<<endl;
-    cout << "INGRESE EL DNI DEL CHOFER: ";
     cin.ignore();
-    cargarCadena(DNI, 10);
-    d=buscarDni(DNI);
-    if (d!=-1)
-    {
-        strcpy(viaj.dni,DNI);
-    }
+    do {
+        cout << "INGRESE EL DNI DEL CHOFER: ";
+        cargarCadena(DNI, 10);
+        d = buscarDni(DNI);
+        espaciosVac(DNI, 1);
+        if (d == -1) { cout << "NO SE ENCONTRO DNI DEL CHOFER" << endl; }
+    } while (d == -1);
+
+    strcpy(viaj.dni, DNI);
     cout << "ID DE CLIENTE: ";
     cin >> viaj.idCliente;
-    cout << "FECHA DE VIAJE: "; // menor o igual a fecha actual
-    cout << "DIA: ";
-    cin >> viaj.viaje.dia;
-    cout << "MES: ";
-    cin >> viaj.viaje.mes;
-    cout << "A" << (char)165 << "O: ";
-    cin >> viaj.viaje.año;
-    cout << "INGRESAR LA HORA: ";
-    cin >> viaj.hora;
+    do {
+        cout << "FECHA DE VIAJE: ";
+        do {
+            cout << "DIA: ";
+            cin >> viaj.viaje.dia;
+            if (viaj.viaje.dia > 31 || viaj.viaje.dia < 1) { cout << "INGRESAR DIA ENTRE 1 Y 31" << endl; }
+        } while (viaj.viaje.dia > 31 || viaj.viaje.dia < 1);
+        do {
+            cout << "MES: ";
+            cin >> viaj.viaje.mes;
+            if (viaj.viaje.mes > 12 || viaj.viaje.mes < 1) { cout << "INGRESAR MES ENTRE 1 Y 12" << endl; }
+        } while (viaj.viaje.mes > 12 || viaj.viaje.mes < 1);
+        cout << "A" << (char)165 << "O: ";
+        cin >> viaj.viaje.año;
+        comp = compFecha(viaj.viaje.dia, viaj.viaje.mes, viaj.viaje.año);
+        if (comp == 1) { cout << "LA FECHA INGRESADA ES MAYOR A LA ACTUAL" << endl; }
+    } while (comp == 1);
+    do {
+        cout << "INGRESAR LA HORA: ";
+        cin >> viaj.hora;
+        if (viaj.hora > 23 || viaj.hora < 0) { cout << "INGRESAR HORA ENTRE 0 Y 23" << endl; }
+    } while (viaj.hora > 23 || viaj.hora < 0);
+
     cout << "KILOMETROS: ";
     cin >> viaj.km;
     cout << "IMPORTE: ";
@@ -91,8 +108,11 @@ viajes cargarViaje() {
     cout << "PATENTE: ";
     cin.ignore();
     cargarCadena(viaj.patente, 10);
-    cout << "CALIFICACION: ";
-    cin >> viaj.calificacion;
+    do {
+        cout << "CALIFICACION: ";
+        cin >> viaj.calificacion;
+        if (viaj.calificacion > 5 || viaj.calificacion < 0) { cout << "INGRESAR CALIFICACION ENTRE 0 ( PESIMO ) O 5 ( EXCELENTE )" << endl; }
+    } while (viaj.calificacion > 5 || viaj.calificacion < 0);
 
     viaj.viajeEstado = true;
 

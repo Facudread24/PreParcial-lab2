@@ -118,37 +118,31 @@ bool espaciosVac(char *aux,int num) {
 	}
 	
 }
-/*int fechaActual(choferes chof) {
-	time_t tiempo;
-	char cad[80];
-	struct tm* tmPtr;
+int compFecha(int i, int x, int z)
+{
+	int Mes, Dia, Año, pos;
+	time_t t = time(NULL);
+	struct tm today = *localtime(&t);
+	Mes = today.tm_mon + 1;
+	Dia = today.tm_mday;
+	Año = (today.tm_year + 1900);
 
-	tiempo = time(NULL);
-	tmPtr = localtime(&tiempo);
-
-	fecha a;
-
-	a.dia = tmPtr->tm_mday;
-	a.mes = tmPtr->tm_mon + 1;
-	a.año = 1900 + tmPtr->tm_year;
-	choferes aux;
-	
-	aux.fechaIng = a;
-
-	
-
-	/*if (chof.fechaIng.dia <= a.dia && chof.fechaIng.mes <= a.mes && chof.fechaIng.año <= a.año) {
-		return true;
+	if (z < Año || z == Año && x == Mes && i < Dia || z == Año && x < Mes)
+	{
+		pos = -1;
+		return pos;
 	}
-	if (chof.fechaVen.dia >= a.dia && chof.fechaVen.mes >= a.mes && chof.fechaVen.año > a.año) {
-		return true;
-	}
-	return false;
-	*/
-	/*tmPtr->tm_hour, tmPtr->tm_min, tmPtr->tm_sec*/;
-	//strftime(cad, 80, "%A %d de %B de %Y", tmPtr);
-	//printf("\n\n%s", cad);
-
+	else
+		if (i == Dia && x == Mes && z == Año)
+		{
+			pos = 0;
+			return pos;
+		}
+		else {
+			pos = 1;
+			return pos;
+		}
+}
 void cargarCadena(char* pal, int tam) {
 	int i;
 	fflush(stdin);

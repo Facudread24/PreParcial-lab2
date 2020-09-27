@@ -46,18 +46,21 @@ void menuChoferes() {
  /*********************************************************************/
 choferes cargarChofer() {
     int a;
+    int comp;
     char aux;
     char cad[50];
     choferes chof;
+    cin.ignore();
     do
     {
-        cin.ignore();
+        
         cout << "CARGAR DNI: ";
         cargarCadena(chof.dni,11);   ///hasta 8 espacio y no vacios 
         a = buscarDni(chof.dni);
         if (a!=-1)
         {
             cout<<"EL DNI YA EXISTE";
+            system("pause");
             system("cls");
         }
     } while (espaciosVac(chof.dni,1) == false ||a!=-1);
@@ -71,13 +74,23 @@ choferes cargarChofer() {
     cargarCadena(chof.nombre,50); // 50 limite no vacia
     } while (espaciosVac(chof.nombre, 3) == false);
 
-    cout<<"FECHA DE INGRESO: "; // menor o igual a fecha actual
-    cout << "DIA: ";
-    cin >> chof.fechaIng.dia;
-    cout << "MES: ";
-    cin >> chof.fechaIng.mes;
-    cout << "A" << (char)165 << "O: ";
-    cin >> chof.fechaIng.año;
+    do {
+        cout << "FECHA DE INGRESO: ";
+        do {
+            cout << "DIA: ";
+            cin >> chof.fechaIng.dia;
+            if (chof.fechaIng.dia > 31 || chof.fechaIng.dia < 1) { cout << "INGRESAR DIA ENTRE 1 Y 31" << endl; }
+        } while (chof.fechaIng.dia > 31 || chof.fechaIng.dia < 1);
+        do {
+            cout << "MES: ";
+            cin >> chof.fechaIng.mes;
+            if (chof.fechaIng.mes > 12 || chof.fechaIng.mes < 1) { cout << "INGRESAR MES ENTRE 1 Y 12" << endl; }
+        } while (chof.fechaIng.mes > 12 || chof.fechaIng.mes < 1);
+        cout << "A" << (char)165 << "O: ";
+        cin >> chof.fechaIng.año;
+        comp = compFecha(chof.fechaIng.dia, chof.fechaIng.mes, chof.fechaIng.año);
+        if (comp == 1) { cout << "LA FECHA DE INGRESO ES MAYOR A LA ACTUAL" << endl; }
+    } while (comp == 1);
 
     do{
     cout << "INGRESAR EL CUIT: ";
@@ -97,13 +110,23 @@ choferes cargarChofer() {
         cin >> chof.tipoRegistro; //entre 1 y 3
     } while (chof.tipoRegistro <1 || chof.tipoRegistro > 3);
 
-    cout<<"FECHA DE VENCIMIENTO: "; // mayor a fecha del sistema
-    cout << "DIA: ";
-    cin >> chof.fechaVen.dia;
-    cout << "MES: ";
-    cin >> chof.fechaVen.mes;
-    cout << "A" << (char)165 << "O: ";
-    cin >> chof.fechaVen.año;
+    do {
+        cout << "FECHA DE VENCIMIENTO: ";
+        do {
+            cout << "DIA: ";
+            cin >> chof.fechaVen.dia;
+            if (chof.fechaVen.dia > 31 || chof.fechaVen.dia < 1) { cout << "INGRESAR DIA ENTRE 1 Y 31" << endl; }
+        } while (chof.fechaVen.dia > 31 || chof.fechaVen.dia < 1);
+        do {
+            cout << "MES: ";
+            cin >> chof.fechaVen.mes;
+            if (chof.fechaVen.mes > 12 || chof.fechaVen.mes < 1) { cout << "INGRESAR MES ENTRE 1 Y 12" << endl; }
+        } while (chof.fechaVen.mes > 12 || chof.fechaVen.mes < 1);
+        cout << "A" << (char)165 << "O: ";
+        cin >> chof.fechaVen.año;
+        comp = compFecha(chof.fechaVen.dia, chof.fechaVen.mes, chof.fechaVen.año);
+        if (comp != 1) { cout << "LA FECHA DE VENCIMIENTO ES MENOR QUE LA FECHA ACTUAL" << endl; }
+    } while (comp != 1);
     
     do{
     cout << "TELEFONO: ";
@@ -133,7 +156,7 @@ bool guardarChofer(choferes chof) {
     FILE* p;
         p = fopen(archivoChoferes, "ab");
     if (p == NULL) {
-        cout << "ERROR AL CARGAR ARCHIVO";
+        cout << "ERROR AL CARGAR ARCHIVO" << endl;
         system("pause");
         system("cls");
         return false;
@@ -141,7 +164,7 @@ bool guardarChofer(choferes chof) {
     if (fwrite(&chof, sizeof(chof), 1, p) == true) {
         
         fclose(p);
-        cout << "REGISTRO GUARDADO CON EXITO";
+        cout << "REGISTRO GUARDADO CON EXITO"<<endl;
         system("pause");
         return true;
     }
@@ -204,7 +227,7 @@ void listarChoferes() {
     FILE* p;
     p = fopen(archivoChoferes, "rb");
     if (p == NULL) {
-        cout << "ERROR AL CARGAR ARCHIVO";
+        cout << "ERROR AL CARGAR ARCHIVO" << endl;
         system("pause");
         system("cls");
         return;
@@ -277,14 +300,34 @@ void modificarchofer() {
     //int cant = cantRegistro();
     int dia, mes, año;
     int pos;
+    int comp;
     pos = buscarDni(dni);
     if (pos != -1) {
         //mostrar
         choferes chof;
         chof = leerRegistro(pos);
-
-        cout << "INGRESE NUEVA FECHA DE VENCIMIENTO: ";
-        cin >> dia >> mes >> año;
+        mostrarChoferes(chof);
+        do {
+            cout << "INGRESE NUEVA FECHA DE VENCIMIENTO: ";
+            do {
+                cout << "DIA: ";
+                cin >> dia;
+                if (dia < 1 || dia>31) { cout << "INGRESAR DIA ENTRE 1 Y 31" << endl; }
+            } while (dia < 1 || dia>31);
+            do {
+                cout << "MES: ";
+                cin >> mes;
+                if (mes < 1 || mes >12) { cout << "INGRESAR MES ENTRE 1 Y 12" << endl; }
+            } while (mes < 1 || mes >12);
+            cout << "A" << (char)165 << "O: ";
+            cin >> año;
+            comp = compFecha(dia, mes, año);
+            if (comp == -1 || comp == 0) {
+                cout << "LA FECHA INGRESADA ES MENOR A LA ACTUAL" << endl;
+                system("pause");
+                system("cls");
+            }
+        } while (comp == -1 || comp == 0);
         chof.fechaVen.dia = dia;
         chof.fechaVen.mes = mes;
         chof.fechaVen.año = año;
@@ -350,16 +393,20 @@ void listarPorDni() {
     char DNI[10];
     int pos;
     choferes chof;
-    cout << "INGRESE EL DNI A MODIFICAR: ";
+    cout << "INGRESE EL DNI: ";
     cin >> DNI;
-    //validar
     pos = buscarDni(DNI);
-    chof = leerRegistro(pos);
-    mostrarChoferes(chof);
+    if (pos != -1)
+    {
+        chof = leerRegistro(pos);
+        mostrarChoferes(chof);
+    }
+    else { cout << "NO SE ENCONTRO EL CHOFER SOLICITADO" << endl; }
+
     system("pause");
 }
 /************************************************************/
-bool ChoferMod(choferes chof, int pos) {
+/*bool ChoferMod(choferes chof, int pos) {/// POSIBLE AGREGADO
     FILE* p;
     p = fopen(archivoChoferes, "rb+");
     if (p == NULL) {
@@ -393,7 +440,7 @@ bool ChoferMod(choferes chof, int pos) {
 
     }
     fclose(p);
-}
+}*/
 /**********************************************/
 bool guardar(choferes chof, int pos) {
     bool grabo;
