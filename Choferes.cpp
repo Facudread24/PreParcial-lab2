@@ -6,7 +6,7 @@
 using namespace std;
 #include "Choferes.h"
 #include "validaciones.h"
-const char archivoChoferes [] = ("choferes.dat");
+
 
 void menuChoferes() {
     int opc;

@@ -1,4 +1,5 @@
 #pragma once
+const char archivoviajes[] = ("viajes.dat");
 void menuViaje();
 void altaViaje();
 void listarPorIdViaje();

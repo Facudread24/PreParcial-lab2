@@ -76,7 +76,7 @@ bool espaciosVac(char *aux,int num) {
 
 	case 4: 
 		x = strlen(aux);
-		if (x == 11) {
+		if (x >= 11 && x<=20 ) {
 			for (int i = 0; i < x; i++)
 			{
 				//n=strchr(aux, (char)32);
@@ -90,7 +90,7 @@ bool espaciosVac(char *aux,int num) {
 			}
 		}
 
-		cout << "DEBE INGRESAR 11 CARACTERES " << endl;
+		cout << "DEBE INGRESAR MAXIMO 20 CARACTERES " << endl;
 		system("pause");
 		system("cls");
 		return false;

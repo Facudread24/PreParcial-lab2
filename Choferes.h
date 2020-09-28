@@ -1,5 +1,6 @@
 #pragma once
 #include "tipos.h"
+const char archivoChoferes[] = ("choferes.dat");
 void menuChoferes();
 void altaChofer();
 bool guardarChofer(choferes chof);

@@ -7,7 +7,7 @@ using namespace std;
 #include "Choferes.h"
 #include "viajes.h"
 #include "validaciones.h"
-const char archivoviajes[] = ("viajes.dat");
+
 
 void menuViaje() {
     int opc;
