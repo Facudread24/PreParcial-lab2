@@ -46,12 +46,13 @@ void bkprealiz() {
 		system ("copy choferes.dat choferes.bkp");
 		system("copy viajes.dat viajes.bkp");
 		cout << " EL BACKUPS SE REALIZO CORRECTAMENTE " << endl;
-		
+		system("pause");
 	}
 	else if (d == 'n' || d == 'N') return;
 	else
 	{
-		cout << "EL CARACTER INGRESADO NO ES VALIDO";
+		cout << "EL CARACTER INGRESADO NO ES VALIDO" << endl;
+		system("pause");
 		return;
 	}
 }
@@ -64,12 +65,13 @@ void bkprest() {
 		system("copy choferes.bkp choferes.dat");
 		system("copy viajes.bkp viajes.dat");
 		cout << " EL BACKUPS SE REALIZO CORRECTAMENTE " << endl;
-
+		system("pause");
 	}
 	else if (d == 'n' || d == 'N') return;
 	else
 	{
-		cout << "EL CARACTER INGRESADO NO ES VALIDO";
+		cout << "EL CARACTER INGRESADO NO ES VALIDO" << endl;
+		system("pause");
 		return;
 	}
 }
@@ -82,12 +84,13 @@ void datoini() {
 		system("copy choferes.ini choferes.dat");
 		system("copy viajes.ini viajes.dat");
 		cout << " EL BACKUPS SE REALIZO CORRECTAMENTE " << endl;
-
+		system("pause");
 	}
 	else if (d == 'n' || d == 'N') return;
 	else
 	{
-		cout << "EL CARACTER INGRESADO NO ES VALIDO";
+		cout << "EL CARACTER INGRESADO NO ES VALIDO" << endl;
+		system("pause");
 		return;
 	}
 }
