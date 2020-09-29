@@ -43,9 +43,14 @@ void bkprealiz() {
 	cin >> d;
 	if (d == 's' || d == 'S') {
 
-		system ("copy choferes.dat choferes.bkp");
-		system("copy viajes.dat viajes.bkp");
-		cout << " EL BACKUPS SE REALIZO CORRECTAMENTE " << endl;
+		if (system("copy choferes.dat choferes.bkp") == true) {
+		
+			cout << " EL BACKUPS DE CHOFERES SE REALIZO CORRECTAMENTE " << endl;
+		}
+		if (system("copy viajes.dat viajes.bkp") == true) {
+		
+			cout << " EL BACKUPS DE LOS VIAJES SE REALIZO CORRECTAMENTE " << endl;
+		}
 		system("pause");
 	}
 	else if (d == 'n' || d == 'N') return;
@@ -58,13 +63,18 @@ void bkprealiz() {
 }
 void bkprest() {
 	char d;
-	cout << "¿ PROCEDE A RESTAURAR LOS ARCHIVOS? (S/N)" << endl;
+	cout << " ¿ PROCEDE A RESTAURAR LOS ARCHIVOS? (S/N)" << endl;
 	cin >> d;
 	if (d == 's' || d == 'S') {
 
-		system("copy choferes.bkp choferes.dat");
-		system("copy viajes.bkp viajes.dat");
-		cout << " EL BACKUPS SE REALIZO CORRECTAMENTE " << endl;
+		if (system("copy choferes.bkp choferes.dat") == true) {
+		
+			cout << " LOS DATOS DE LOS CHOFERES SE RESTAURARON CORRECTAMENTE " << endl;
+		}
+		if (system("copy viajes.bkp viajes.dat") == true) {
+		
+			cout << " LOS DATOS DE LOS VIAJES SE RESTAURARON CORRECTAMENTE " << endl;
+		}
 		system("pause");
 	}
 	else if (d == 'n' || d == 'N') return;
@@ -77,13 +87,21 @@ void bkprest() {
 }
 void datoini() {
 	char d;
-	cout << "¿ CARGAR DATOS DE INICIO ? (S/N)" << endl;
+	cout << " ¿ CARGAR DATOS DE INICIO ? (S/N)" << endl;
 	cin >> d;
 	if (d == 's' || d == 'S') {
 
-		system("copy choferes.ini choferes.dat");
-		system("copy viajes.ini viajes.dat");
-		cout << " EL BACKUPS SE REALIZO CORRECTAMENTE " << endl;
+		if (system("copy choferes.ini choferes.dat")==true) {
+			
+			cout << " LA CARGA DE LOS DATOS DE INICIO DE CHOFERES SE REALIZO CORRECTAMENTE " << endl;
+			
+		}
+		if (system("copy viajes.ini viajes.dat") == true) {
+		
+			cout << " LA CARGA DE LOS DATOS DE INICIO DE LOS VIAJES SE REALIZO CORRECTAMENTE " << endl;
+
+		}
+		
 		system("pause");
 	}
 	else if (d == 'n' || d == 'N') return;
