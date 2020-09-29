@@ -43,13 +43,15 @@ void bkprealiz() {
 	cin >> d;
 	if (d == 's' || d == 'S') {
 
-		if (system("copy choferes.dat choferes.bkp") == true) {
+		if (system("copy choferes.dat choferes.bkp") == false) {
 		
 			cout << " EL BACKUPS DE CHOFERES SE REALIZO CORRECTAMENTE " << endl;
+			
 		}
-		if (system("copy viajes.dat viajes.bkp") == true) {
+		if (system("copy viajes.dat viajes.bkp") == false) {
 		
 			cout << " EL BACKUPS DE LOS VIAJES SE REALIZO CORRECTAMENTE " << endl;
+			
 		}
 		system("pause");
 	}
@@ -67,11 +69,11 @@ void bkprest() {
 	cin >> d;
 	if (d == 's' || d == 'S') {
 
-		if (system("copy choferes.bkp choferes.dat") == true) {
+		if (system("copy choferes.bkp choferes.dat") == false) {
 		
 			cout << " LOS DATOS DE LOS CHOFERES SE RESTAURARON CORRECTAMENTE " << endl;
 		}
-		if (system("copy viajes.bkp viajes.dat") == true) {
+		if (system("copy viajes.bkp viajes.dat") == false) {
 		
 			cout << " LOS DATOS DE LOS VIAJES SE RESTAURARON CORRECTAMENTE " << endl;
 		}
@@ -91,12 +93,12 @@ void datoini() {
 	cin >> d;
 	if (d == 's' || d == 'S') {
 
-		if (system("copy choferes.ini choferes.dat")==true) {
+		if (system("copy choferes.ini choferes.dat")==false) {
 			
 			cout << " LA CARGA DE LOS DATOS DE INICIO DE CHOFERES SE REALIZO CORRECTAMENTE " << endl;
 			
 		}
-		if (system("copy viajes.ini viajes.dat") == true) {
+		if (system("copy viajes.ini viajes.dat") == false) {
 		
 			cout << " LA CARGA DE LOS DATOS DE INICIO DE LOS VIAJES SE REALIZO CORRECTAMENTE " << endl;
 
