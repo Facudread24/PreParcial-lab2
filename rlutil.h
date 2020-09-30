@@ -146,7 +146,7 @@ namespace rlutil {
 	#define RLUTIL_PRINT(st) printf("%s", st)
 #endif // __cplusplus
 
-/**
+/*
  * Enums: Color codes
  *
  * BLACK - Black
@@ -166,7 +166,7 @@ namespace rlutil {
  * YELLOW - Yellow (bright)
  * WHITE - White (bright)
  */
-enum {
+enum a{
 	BLACK,
 	BLUE,
 	GREEN,

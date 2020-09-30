@@ -89,7 +89,7 @@ void guardarReporte1(reporte1 aux) {
 	{
 		return;
 	}
-	if(fwrite(&aux,sizeof (reporte1),1,p)==true){
+	if(fwrite(&aux,sizeof (reporte1),1,p)==1){
 			fclose(p);
 			//cout << "REPORTE GUARDADO CON EXITO";
 			//system("pause");

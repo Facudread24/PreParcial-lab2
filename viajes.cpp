@@ -100,14 +100,26 @@ viajes cargarViaje() {
         cin >> viaj.hora;
         if (viaj.hora > 23 || viaj.hora < 0) { cout << "INGRESAR HORA ENTRE 0 Y 23" << endl; }
     } while (viaj.hora > 23 || viaj.hora < 0);
-
-    cout << "KILOMETROS: ";
-    cin >> viaj.km;
-    cout << "IMPORTE: ";
-    cin >> viaj.importe;
-    cout << "PATENTE: ";
+    do
+    {
+        cout << "KILOMETROS: ";
+        cin >> viaj.km;
+        if (viaj.km <= 0)cout << "LOS KILOMETROS DEBE SER MAYOR A 0" << endl;
+    } while (viaj.km<=0);
+    do
+    {
+        cout << "IMPORTE: ";
+        cin >> viaj.importe;
+        if (viaj.importe <= 0)cout << "EL IMPORTE DEBE SER MAYOR A $0" << endl;
+    } while (viaj.importe <=0);
+    
     cin.ignore();
-    cargarCadena(viaj.patente, 10);
+    do
+    {
+        cout << "PATENTE: ";
+        cargarCadena(viaj.patente, 10);
+    } while (espaciosVac(viaj.patente,6)==false);
+    
     do {
         cout << "CALIFICACION: ";
         cin >> viaj.calificacion;
@@ -131,7 +143,7 @@ bool guardarViaje(viajes viaj) {
         system("cls");
         return false;
     }
-    if (fwrite(&viaj, sizeof(viaj), 1, p) == true) {
+    if (fwrite(&viaj, sizeof(viaj), 1, p) == 1) {
 
         fclose(p);
         cout << "REGISTRO GUARDADO CON EXITO";
@@ -140,6 +152,7 @@ bool guardarViaje(viajes viaj) {
     }
 
     fclose(p);
+    return false;
 }/**************************************************************/
 int cantRegistroViaje() {
 

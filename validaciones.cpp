@@ -4,10 +4,8 @@
 #include <cstdio>
 #include "validaciones.h"
 using namespace std;
-bool espaciosVac(char *aux,int num) {
-	choferes chof;
+bool espaciosVac(char* aux, int num) {
 	int x;
-	char *n;
 	switch (num)
 	{
 	case 1:
@@ -16,8 +14,8 @@ bool espaciosVac(char *aux,int num) {
 			for (int i = 0; i < x; i++)
 			{
 				//n=strchr(aux, (char)32);
-				if (isdigit(aux[i]==false)) {
-					cout << "NO INGRESAR ESPACIOS VACIOS NI LETRAS"<<endl;
+				if (isdigit(aux[i] == false)) {
+					cout << "NO INGRESAR ESPACIOS VACIOS NI LETRAS" << endl;
 					system("pause");
 					system("cls");
 					return false;
@@ -25,7 +23,7 @@ bool espaciosVac(char *aux,int num) {
 				return true;
 			}
 		}
-		cout << "DEBE INGRESAR 8 CARACTERES "<< endl;
+		cout << "DEBE INGRESAR 8 CARACTERES " << endl;
 		system("pause");
 		system("cls");
 		return false;
@@ -74,9 +72,9 @@ bool espaciosVac(char *aux,int num) {
 		return false;
 		break;
 
-	case 4: 
+	case 4:
 		x = strlen(aux);
-		if (x >= 11 && x<=20 ) {
+		if (x >= 11 && x <= 20) {
 			for (int i = 0; i < x; i++)
 			{
 				//n=strchr(aux, (char)32);
@@ -95,7 +93,7 @@ bool espaciosVac(char *aux,int num) {
 		system("cls");
 		return false;
 	case 5:
-		
+
 		x = strlen(aux);
 		if (x == 11) {
 			for (int i = 0; i < x; i++)
@@ -110,13 +108,23 @@ bool espaciosVac(char *aux,int num) {
 				return true;
 			}
 		}
-		
+
 		cout << "DEBE INGRESAR 11 CARACTERES " << endl;
 		system("pause");
 		system("cls");
 		return false;
+	case 6:
+
+		x = strlen(aux);
+		if (x == 6) {
+			return true;
+		}
+			cout << "DEBE INGRESAR 6 CARACTERES " << endl;
+			system("pause");
+			system("cls");
+			return false;
 	}
-	
+	return false;
 }
 int compFecha(int i, int x, int z)
 {

@@ -149,7 +149,9 @@
   <ItemGroup>
     <ClInclude Include="Choferes.h" />
     <ClInclude Include="configuracion.h" />
+    <ClInclude Include="herramientas.h" />
     <ClInclude Include="reportes.h" />
+    <ClInclude Include="rlutil.h" />
     <ClInclude Include="tipos.h" />
     <ClInclude Include="validaciones.h" />
     <ClInclude Include="viajes.h" />

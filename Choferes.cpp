@@ -2,11 +2,11 @@
 #include <cstdlib>
 #include <cstdio>
 #include <cstring>
-
+#include "rlutil.h"
 using namespace std;
+
 #include "Choferes.h"
 #include "validaciones.h"
-
 
 void menuChoferes() {
     int opc;
@@ -23,7 +23,7 @@ void menuChoferes() {
         cout << "5) ELIMINAR CHOFER" << endl;
         cout << "----------------------" << endl;
         cout << "0) VOLVER AL MENU PRINCIPAL" << endl << endl;
-        cout << "INGRESE SU OPCION: "<<endl<<">";
+        cout << "INGRESE SU OPCION: " << endl << ">";
         cin >> opc;
         system("cls");
         switch (opc)
@@ -48,7 +48,6 @@ choferes cargarChofer() {
     int a;
     int comp;
     char aux;
-    char cad[50];
     choferes chof;
     cin.ignore();
     do
@@ -59,7 +58,7 @@ choferes cargarChofer() {
         a = buscarDni(chof.dni);
         if (a!=-1)
         {
-            cout<<"EL DNI YA EXISTE";
+            cout<<"EL DNI YA EXISTE"<<endl;
             system("pause");
             system("cls");
         }
@@ -92,14 +91,15 @@ choferes cargarChofer() {
         if (comp == 1) { cout << "LA FECHA DE INGRESO ES MAYOR A LA ACTUAL" << endl; }
     } while (comp == 1);
 
+    cin.ignore();
     do{
     cout << "INGRESAR EL CUIT: ";
-    cin.ignore();
     cargarCadena(chof.cuit,51);
     a = buscarCuit(chof.cuit);
     if (a != -1)
     {
-        cout << "EL CUIT YA EXISTE";
+        cout << "EL CUIT YA EXISTE" << endl;
+        system("pause");
         system("cls");
     }
     } while (espaciosVac(chof.cuit,4)==false || a!=-1);
@@ -128,9 +128,9 @@ choferes cargarChofer() {
         if (comp != 1) { cout << "LA FECHA DE VENCIMIENTO ES MENOR QUE LA FECHA ACTUAL" << endl; }
     } while (comp != 1);
     
+    cin.ignore();
     do{
     cout << "TELEFONO: ";
-    cin.ignore();
     cargarCadena(chof.telefono, 16); // sea de 15
     } while (espaciosVac(chof.telefono, 5) == false);
     
@@ -161,7 +161,7 @@ bool guardarChofer(choferes chof) {
         system("cls");
         return false;
     }
-    if (fwrite(&chof, sizeof(chof), 1, p) == true) {
+    if (fwrite(&chof, sizeof(chof), 1, p) == 1) {
         
         fclose(p);
         cout << "REGISTRO GUARDADO CON EXITO"<<endl;
@@ -170,6 +170,7 @@ bool guardarChofer(choferes chof) {
     }
 
     fclose(p);
+    return false;
 }
 /***********************************************************************/
 void altaChofer() {
@@ -273,7 +274,7 @@ int cantRegistro() {
     FILE* p;
     p = fopen(archivoChoferes, "rb");
     if (p == NULL) {
-        cout << "ERROR AL CARGAR ARCHIVO";
+        cout << "ERROR AL CARGAR ARCHIVO"<<endl;
         system("pause");
         system("cls");
         return -1;
@@ -291,7 +292,6 @@ int cantRegistro() {
 }
 /****************************************************************************/
 void modificarchofer() {
-    choferes aux;
 
     char dni[10];
 
@@ -351,7 +351,7 @@ void bajaChofer() {
     p = fopen(archivoChoferes, "rb+");
     if (p==NULL)
     {
-        cout << "ERROR AL CARGAR ARCHIVO";
+        cout << "ERROR AL CARGAR ARCHIVO" << endl;
         system("pause");
         system("cls");
         return;
@@ -406,48 +406,14 @@ void listarPorDni() {
     system("pause");
 }
 /************************************************************/
-/*bool ChoferMod(choferes chof, int pos) {/// POSIBLE AGREGADO
-    FILE* p;
-    p = fopen(archivoChoferes, "rb+");
-    if (p == NULL) {
-        cout << "ERROR AL CARGAR ARCHIVO";
-        system("pause");
-        system("cls");
-        return false;
-    }
-    int cant;
-    choferes aux;
-    char dni[10];
-    cant = cantRegistro();
-    aux = leerRegistro(pos);
-    cout<<"INGRESE EL DNI DL CHOFER A MODIFICAR: ";
-    cin >> dni;
-    pos = buscarDni(dni);
-    if (pos !=-1)
-    {
-        int opc;
-        cout<<"INGRESE LA OPCION A MODIFICAR:"<<endl;
-        cout<<"1.DNI"<<endl;
-        cout<<"2.APELLIDO"<<endl;
-        cout<<"3.NOMBRE"<<endl;
-        cout<<"4.FECHA DE INGRESO"<<endl;
-        cout<<"5.CUIT"<<endl;
-        cout<<"6.TIPO DE REGISTRO"<<endl;
-        cout<<"7.FECHA DE VENCIMIENTO"<<endl;
-        cout<<"8.FECHA DE VENCIMIENTO" << endl;
-        cout<<"9.PROPIETARIO" << endl;
-        cin >> opc;
 
-    }
-    fclose(p);
-}*/
 /**********************************************/
 bool guardar(choferes chof, int pos) {
     bool grabo;
     FILE* p;
     p = fopen(archivoChoferes, "rb+");
     if (p == NULL) {
-        cout << "ERROR AL CARGAR ARCHIVO";
+        cout << "ERROR AL CARGAR ARCHIVO" << endl;
         system("pause");
         system("cls");
         return false;
