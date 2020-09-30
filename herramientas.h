@@ -1,5 +1,5 @@
 #pragma once
-void recuadro(short iniX, short iniY, short ancho, short alto, short colorLinea = WHITE, short colorFondo = BLACK) {
+void recuadro(int iniX, int iniY, int ancho, int alto, short colorLinea = WHITE, short colorFondo = CYAN) {
     setlocale(LC_ALL, "C");
     int i, j;
     for (i = iniX; i <= iniX + ancho; i++) {

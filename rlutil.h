@@ -166,7 +166,7 @@ namespace rlutil {
  * YELLOW - Yellow (bright)
  * WHITE - White (bright)
  */
-enum a{
+enum {
 	BLACK,
 	BLUE,
 	GREEN,

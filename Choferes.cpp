@@ -4,26 +4,45 @@
 #include <cstring>
 #include "rlutil.h"
 using namespace std;
-
+using namespace rlutil;
 #include "Choferes.h"
 #include "validaciones.h"
 
 void menuChoferes() {
     int opc;
+
     do
     {
+        setColor(BLUE);
+        setBackgroundColor(WHITE);
         system("cls");
+        
+        locate(45, 7);
+        cout << "-------------------------------------------" << endl;
+        locate(45, 8);
         cout << "--------------MENU CHOFERES----------------" << endl;
-        cout << "--------------" << endl << endl;
-
+        locate(45, 9);
+        cout << "-------------------------------------------" << endl;
+        //cout << "--------------" << endl << endl;
+        locate(45, 10);
         cout << "1) NUEVO CHOFER" << endl;
+        locate(45, 11);
         cout << "2) MODIFICAR CHOFER" << endl;
+        locate(45, 12);
         cout << "3) LISTAR CHOFER POR DNI" << endl;
+        locate(45, 13);
         cout << "4) LISTAR TODOS LOS CHOFERES" << endl << endl;;
+        locate(45, 14);
         cout << "5) ELIMINAR CHOFER" << endl;
+        locate(45, 15);
         cout << "----------------------" << endl;
+        locate(45, 16);
         cout << "0) VOLVER AL MENU PRINCIPAL" << endl << endl;
-        cout << "INGRESE SU OPCION: " << endl << ">";
+        locate(45, 17);
+        cout << "----------------------" << endl;
+        locate(45, 18);
+        cout << "INGRESE SU OPCION: >";
+        locate(65, 18);
         cin >> opc;
         system("cls");
         switch (opc)
@@ -58,7 +77,10 @@ choferes cargarChofer() {
         a = buscarDni(chof.dni);
         if (a!=-1)
         {
+            cout << endl;
+            setColor(RED);
             cout<<"EL DNI YA EXISTE"<<endl;
+            setColor(BLUE);
             system("pause");
             system("cls");
         }
@@ -78,17 +100,26 @@ choferes cargarChofer() {
         do {
             cout << "DIA: ";
             cin >> chof.fechaIng.dia;
+            cout << endl;
+            setColor(RED);
             if (chof.fechaIng.dia > 31 || chof.fechaIng.dia < 1) { cout << "INGRESAR DIA ENTRE 1 Y 31" << endl; }
+            setColor(BLUE);
         } while (chof.fechaIng.dia > 31 || chof.fechaIng.dia < 1);
         do {
             cout << "MES: ";
             cin >> chof.fechaIng.mes;
+            cout << endl;
+            setColor(RED);
             if (chof.fechaIng.mes > 12 || chof.fechaIng.mes < 1) { cout << "INGRESAR MES ENTRE 1 Y 12" << endl; }
+            setColor(BLUE);
         } while (chof.fechaIng.mes > 12 || chof.fechaIng.mes < 1);
         cout << "A" << (char)165 << "O: ";
         cin >> chof.fechaIng.año;
         comp = compFecha(chof.fechaIng.dia, chof.fechaIng.mes, chof.fechaIng.año);
+        cout << endl;
+        setColor(RED);
         if (comp == 1) { cout << "LA FECHA DE INGRESO ES MAYOR A LA ACTUAL" << endl; }
+        setColor(BLUE);
     } while (comp == 1);
 
     cin.ignore();
@@ -98,7 +129,10 @@ choferes cargarChofer() {
     a = buscarCuit(chof.cuit);
     if (a != -1)
     {
+        cout << endl;
+        setColor(RED);
         cout << "EL CUIT YA EXISTE" << endl;
+        setColor(BLUE);
         system("pause");
         system("cls");
     }
@@ -115,17 +149,26 @@ choferes cargarChofer() {
         do {
             cout << "DIA: ";
             cin >> chof.fechaVen.dia;
+            cout << endl;
+            setColor(RED);
             if (chof.fechaVen.dia > 31 || chof.fechaVen.dia < 1) { cout << "INGRESAR DIA ENTRE 1 Y 31" << endl; }
+            setColor(BLUE);
         } while (chof.fechaVen.dia > 31 || chof.fechaVen.dia < 1);
         do {
             cout << "MES: ";
             cin >> chof.fechaVen.mes;
+            cout << endl;
+            setColor(RED);
             if (chof.fechaVen.mes > 12 || chof.fechaVen.mes < 1) { cout << "INGRESAR MES ENTRE 1 Y 12" << endl; }
+            setColor(BLUE);
         } while (chof.fechaVen.mes > 12 || chof.fechaVen.mes < 1);
         cout << "A" << (char)165 << "O: ";
         cin >> chof.fechaVen.año;
         comp = compFecha(chof.fechaVen.dia, chof.fechaVen.mes, chof.fechaVen.año);
+        cout << endl;
+        setColor(RED);
         if (comp != 1) { cout << "LA FECHA DE VENCIMIENTO ES MENOR QUE LA FECHA ACTUAL" << endl; }
+        setColor(BLUE);
     } while (comp != 1);
     
     cin.ignore();
@@ -181,6 +224,7 @@ void altaChofer() {
     if (reg.estado == true) {
         pos = buscarDni(reg.dni);
         if (pos != -1) {
+            cout << endl;
             cout << "EL DNI YA EXISTE" << endl << endl;
             system("pause");
             return;

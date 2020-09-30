@@ -3,6 +3,8 @@
 #include<ctime>
 #include <cstdio>
 #include "validaciones.h"
+#include "rlutil.h"
+using namespace rlutil;
 using namespace std;
 bool espaciosVac(char* aux, int num) {
 	int x;
@@ -15,7 +17,10 @@ bool espaciosVac(char* aux, int num) {
 			{
 				//n=strchr(aux, (char)32);
 				if (isdigit(aux[i] == false)) {
+					cout << endl;
+					setColor(RED);
 					cout << "NO INGRESAR ESPACIOS VACIOS NI LETRAS" << endl;
+					setColor(BLUE);
 					system("pause");
 					system("cls");
 					return false;
@@ -23,7 +28,10 @@ bool espaciosVac(char* aux, int num) {
 				return true;
 			}
 		}
+		cout << endl;
+		setColor(RED);
 		cout << "DEBE INGRESAR 8 CARACTERES " << endl;
+		setColor(BLUE);
 		system("pause");
 		system("cls");
 		return false;
@@ -43,8 +51,10 @@ bool espaciosVac(char* aux, int num) {
 			}*/
 			return true;
 		}
-
+		cout << endl;
+		setColor(RED);
 		cout << "DEBE INGRESAR HASTA 50 CARACTERES " << endl;
+		setColor(BLUE);
 		system("pause");
 		system("cls");
 		return false;
@@ -65,8 +75,10 @@ bool espaciosVac(char* aux, int num) {
 			}*/
 			return true;
 		}
-
+		cout << endl;
+		setColor(RED);
 		cout << "DEBE INGRESAR HASTA 50 CARACTERES " << endl;
+		setColor(BLUE);
 		system("pause");
 		system("cls");
 		return false;
@@ -79,7 +91,10 @@ bool espaciosVac(char* aux, int num) {
 			{
 				//n=strchr(aux, (char)32);
 				if (isdigit(aux[i] == false)) {
+					cout << endl;
+					setColor(RED);
 					cout << "NO INGRESAR ESPACIOS VACIOS NI LETRAS" << endl;
+					setColor(BLUE);
 					system("pause");
 					system("cls");
 					return false;
@@ -87,8 +102,10 @@ bool espaciosVac(char* aux, int num) {
 				return true;
 			}
 		}
-
+		cout << endl;
+		setColor(RED);
 		cout << "DEBE INGRESAR MAXIMO 20 CARACTERES " << endl;
+		setColor(BLUE);
 		system("pause");
 		system("cls");
 		return false;
@@ -100,7 +117,10 @@ bool espaciosVac(char* aux, int num) {
 			{
 				//n=strchr(aux, (char)32);
 				if (isdigit(aux[i] == false)) {
+					cout << endl;
+					setColor(RED);
 					cout << "NO INGRESAR ESPACIOS VACIOS NI LETRAS" << endl;
+					setColor(BLUE);
 					system("pause");
 					system("cls");
 					return false;
@@ -108,8 +128,10 @@ bool espaciosVac(char* aux, int num) {
 				return true;
 			}
 		}
-
+		cout << endl;
+		setColor(RED);
 		cout << "DEBE INGRESAR 11 CARACTERES " << endl;
+		setColor(BLUE);
 		system("pause");
 		system("cls");
 		return false;
@@ -119,7 +141,10 @@ bool espaciosVac(char* aux, int num) {
 		if (x == 6) {
 			return true;
 		}
-			cout << "DEBE INGRESAR 6 CARACTERES " << endl;
+		cout << endl;
+		setColor(RED);
+		cout << "DEBE INGRESAR 6 CARACTERES " << endl;
+		setColor(BLUE);
 			system("pause");
 			system("cls");
 			return false;

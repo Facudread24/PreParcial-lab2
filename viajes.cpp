@@ -2,8 +2,9 @@
 #include <cstdlib>
 #include <cstdio>
 #include <cstring>
-
+#include "rlutil.h"
 using namespace std;
+using namespace rlutil;
 #include "Choferes.h"
 #include "viajes.h"
 #include "validaciones.h"
@@ -13,17 +14,33 @@ void menuViaje() {
     int opc;
     do
     {
+        setColor(BLUE);
+        setBackgroundColor(WHITE);
         system("cls");
-        cout << "--------------MENU VIAJES----------------" << endl;
-        cout << "--------------" << endl << endl;
 
+        locate(45, 7);
+        cout << "-------------------------------------------" << endl;
+        locate(45, 8);
+        cout << "----------------MENU VIAJES----------------" << endl;
+        locate(45, 9);
+        cout << "-------------------------------------------" << endl;
+        locate(52, 10);
         cout << "1) NUEVO VIAJE" << endl;
+        locate(52, 11);
         cout << "2) LISTAR VIAJE POR ID VIAJE" << endl;
+        locate(52, 12);
         cout << "3) LISTAR TODOS LOS VIAJES" << endl << endl;;
+        locate(52, 13);
         cout << "4) ELIMINAR VIAJE" << endl;
-        cout << "----------------------" << endl;
+        locate(45, 14);
+        cout << "------------------------------------------" << endl;
+        locate(52, 15);
         cout << "0) VOLVER AL MENU PRINCIPAL" << endl << endl;
-        cout << "INGRESE SU OPCION: " << endl << ">";
+        locate(45, 16);
+        cout << "------------------------------------------" << endl;
+        locate(52, 17);
+        cout << "INGRESE SU OPCION: >";
+        locate(73, 17);
         cin >> opc;
         system("cls");
         switch (opc)
@@ -51,8 +68,11 @@ void altaViaje() {
     if (reg.viajeEstado == true) {
         pos = buscarDni(chof.dni);
         if (pos != -1) {
+            cout << endl;
+            setColor(RED);
             cout << "EL DNI YA EXISTE" << endl << endl;
             system("pause");
+            setColor(BLUE);
             return;
         }
         guardarViaje(reg);
@@ -72,7 +92,10 @@ viajes cargarViaje() {
         cargarCadena(DNI, 10);
         d = buscarDni(DNI);
         espaciosVac(DNI, 1);
+        cout << endl;
+        setColor(RED);
         if (d == -1) { cout << "NO SE ENCONTRO DNI DEL CHOFER" << endl; }
+        setColor(BLUE);
     } while (d == -1);
 
     strcpy(viaj.dni, DNI);
@@ -83,34 +106,52 @@ viajes cargarViaje() {
         do {
             cout << "DIA: ";
             cin >> viaj.viaje.dia;
+            cout << endl;
+            setColor(RED);
             if (viaj.viaje.dia > 31 || viaj.viaje.dia < 1) { cout << "INGRESAR DIA ENTRE 1 Y 31" << endl; }
+            setColor(BLUE);
         } while (viaj.viaje.dia > 31 || viaj.viaje.dia < 1);
         do {
             cout << "MES: ";
             cin >> viaj.viaje.mes;
+            cout << endl;
+            setColor(RED);
             if (viaj.viaje.mes > 12 || viaj.viaje.mes < 1) { cout << "INGRESAR MES ENTRE 1 Y 12" << endl; }
+            setColor(BLUE);
         } while (viaj.viaje.mes > 12 || viaj.viaje.mes < 1);
         cout << "A" << (char)165 << "O: ";
         cin >> viaj.viaje.año;
         comp = compFecha(viaj.viaje.dia, viaj.viaje.mes, viaj.viaje.año);
+        cout << endl;
+        setColor(RED);
         if (comp == 1) { cout << "LA FECHA INGRESADA ES MAYOR A LA ACTUAL" << endl; }
+        setColor(BLUE);
     } while (comp == 1);
     do {
         cout << "INGRESAR LA HORA: ";
         cin >> viaj.hora;
+        cout << endl;
+        setColor(RED);
         if (viaj.hora > 23 || viaj.hora < 0) { cout << "INGRESAR HORA ENTRE 0 Y 23" << endl; }
+        setColor(BLUE);
     } while (viaj.hora > 23 || viaj.hora < 0);
     do
     {
         cout << "KILOMETROS: ";
         cin >> viaj.km;
+        cout << endl;
+        setColor(RED);
         if (viaj.km <= 0)cout << "LOS KILOMETROS DEBE SER MAYOR A 0" << endl;
+        setColor(BLUE);
     } while (viaj.km<=0);
     do
     {
         cout << "IMPORTE: ";
         cin >> viaj.importe;
+        cout << endl;
+        setColor(RED);
         if (viaj.importe <= 0)cout << "EL IMPORTE DEBE SER MAYOR A $0" << endl;
+        setColor(BLUE);
     } while (viaj.importe <=0);
     
     cin.ignore();
@@ -123,7 +164,10 @@ viajes cargarViaje() {
     do {
         cout << "CALIFICACION: ";
         cin >> viaj.calificacion;
+        cout << endl;
+        setColor(RED);
         if (viaj.calificacion > 5 || viaj.calificacion < 0) { cout << "INGRESAR CALIFICACION ENTRE 0 ( PESIMO ) O 5 ( EXCELENTE )" << endl; }
+        setColor(BLUE);
     } while (viaj.calificacion > 5 || viaj.calificacion < 0);
 
     viaj.viajeEstado = true;

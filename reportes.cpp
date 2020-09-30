@@ -2,7 +2,8 @@
 #include <cstdlib>
 #include <cstdio>
 #include <cstring>
-
+#include "rlutil.h"
+using namespace rlutil;
 using namespace std;
 #include "Choferes.h"
 #include "viajes.h"
@@ -15,14 +16,31 @@ void menuReportes() {
 	int opc;
 	do
 	{
+		setColor(BLUE);
+		setBackgroundColor(WHITE);
 		system("cls");
-		cout << "-----------------------MENU REPORTES--------------------" << endl;
+
+		locate(45, 7);
+		cout << "-------------------------------------------" << endl;
+		locate(45, 8);
+		cout << "----------------MENU REPORTES--------------" << endl;
+		locate(45, 9);
+		cout << "-------------------------------------------" << endl;
+		locate(52, 10);
 		cout<<"1)REPORTE 1" << endl;
+		locate(52, 11);
 		cout<<"2)REPORTE 2" << endl;
+		locate(52, 12);
 		cout<<"3)REPORTE 3" << endl;
-		cout<<"----------------------------------" << endl;
+		locate(45, 13);
+		cout << "-------------------------------------------" << endl;
+		locate(52, 14);
 		cout<<"0) VOLVER AL MENU PRINCIPAL" << endl <<endl;
-		cout<<"INGRESE LA OPCION"<<endl << ">";
+		locate(45, 15);
+		cout << "-------------------------------------------" << endl;
+		locate(52, 16);
+		cout<<"INGRESE LA OPCION >";
+		locate(73, 16);
 		cin >> opc;
 		system("cls");
 		switch (opc)

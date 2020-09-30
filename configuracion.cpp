@@ -4,7 +4,8 @@
 #include <cstring>
 #include <filesystem>
 #include <fstream>
-
+#include "rlutil.h"
+using namespace rlutil;
 using namespace std;
 #include "Choferes.h"
 #include "viajes.h"
@@ -16,14 +17,31 @@ void configuracion() {
 	int opc;
 	do
 	{
+		setColor(BLUE);
+		setBackgroundColor(WHITE);
 		system("cls");
-		cout << "-----------------------MENU CONFIGURACION--------------------" << endl;
+
+		locate(45, 7);
+		cout << "--------------------------------------------------" << endl;
+		locate(45, 8);
+		cout << "----------------MENU CONFIGURACION----------------" << endl;
+		locate(45, 9);
+		cout << "--------------------------------------------------" << endl;
+		locate(52, 10);
 		cout << "1)REALIZAR BACKUP" << endl;
+		locate(52, 11);
 		cout << "2)RESTAURAR BACKUP" << endl;
+		locate(52, 12);
 		cout << "3)CARGAR DATOS INICIALES" << endl;
-		cout << "----------------------------------"<< endl;
+		locate(45, 13);
+		cout << "--------------------------------------------------" << endl;
+		locate(52, 14);
 		cout << "0) VOLVER AL MENU PRINCIPAL" << endl << endl;
-		cout << "INGRESE LA OPCION" << endl << ">";
+		locate(45, 15);
+		cout << "--------------------------------------------------" << endl;
+		locate(52, 16);
+		cout << "INGRESE LA OPCION >";
+		locate(73, 16);
 		cin >> opc;
 		system("cls");
 		switch (opc)
@@ -58,7 +76,10 @@ void bkprealiz() {
 	else if (d == 'n' || d == 'N') return;
 	else
 	{
+		cout << endl;
+		setColor(RED);
 		cout << "EL CARACTER INGRESADO NO ES VALIDO" << endl;
+		setColor(BLUE);
 		system("pause");
 		return;
 	}
@@ -82,7 +103,10 @@ void bkprest() {
 	else if (d == 'n' || d == 'N') return;
 	else
 	{
+		cout << endl;
+		setColor(RED);
 		cout << "EL CARACTER INGRESADO NO ES VALIDO" << endl;
+		setColor(BLUE);
 		system("pause");
 		return;
 	}
@@ -109,7 +133,10 @@ void datoini() {
 	else if (d == 'n' || d == 'N') return;
 	else
 	{
+		cout << endl;
+		setColor(RED);
 		cout << "EL CARACTER INGRESADO NO ES VALIDO" << endl;
+		setColor(BLUE);
 		system("pause");
 		return;
 	}
